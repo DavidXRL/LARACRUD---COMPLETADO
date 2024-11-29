@@ -7,7 +7,7 @@
     <button><a href="{{route('brands.create')}}">Registrar Marcas</a></button>
     <br>
     <br>
-<table>
+<table class="table table-striped">
     <thead>
         <th> Nombre del Producto </th>
         <th> Marca </th>
@@ -27,7 +27,9 @@
                 <td>{{$p->unit_price}}</td>
                 <td><img src="/image/products/{{$p->imagen}}" width="60" alt="producto"></td>
                 <td>
-                    <button><a href="{{route("products.show", $p)}}">Mostrar</a></button>
+                    <a class="btn btn-primary" href="{{route("products.show", $p)}}"> 
+                        <i class="fa-solid fa-plus"></i> 
+                    </a>
                     <button><a href="{{route("products.edit", $p)}}">Editar</a></button>
                     <button><a href="{{route("products.delete", $p)}}">Eliminar</a></button>     
                 </td>
