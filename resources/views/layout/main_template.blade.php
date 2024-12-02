@@ -6,7 +6,7 @@
     <title>Laracrud</title>
     @vite(['resources/css/app.css','resources/js/app.js'])
 </head>
-<body style="background-color: rgb(225, 210, 180)">
+<body>
     
     @include('fragments.navbar')
     

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Brand;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\Brands\StoreRequest;
+use App\Http\Requests\Brands\UpdateRequest;
+
 
 class BrandController extends Controller
 {
@@ -13,7 +16,8 @@ class BrandController extends Controller
      */
     public function index()
     {
-        //
+        $brands = Brand::paginate(4);
+        return view('admin/brands/index', compact('brands'));
     }
 
     /**
@@ -21,16 +25,17 @@ class BrandController extends Controller
      */
     public function create()
     {
-        return view ('admin/brands/create'); // llamar vista organizada
+        $brands=Brand::pluck('id', 'brand');
+        return view('admin/brands/create', compact('brands'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
         Brand::create($request->all());
-        return to_route('products.index') -> with ('status', 'Marca Registrada');
+        return to_route('brands.index') -> with ('status', 'Marca registrada con éxito');
     }
 
     /**
@@ -38,7 +43,7 @@ class BrandController extends Controller
      */
     public function show(Brand $brand)
     {
-        //
+        return view('admin/brands/show', compact('brand'));
     }
 
     /**
@@ -46,22 +51,31 @@ class BrandController extends Controller
      */
     public function edit(Brand $brand)
     {
-        //
+        echo view('admin/brands/edit', compact('brand'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Brand $brand)
+    public function update(UpdateRequest $request, Brand $brand)
     {
-        //
+        $brand->update($request->all());
+        return to_route('brands.index')->with('status', 'Marca actualizada');
     }
 
     /**
      * Remove the specified resource from storage.
      */
+
+     public function delete(Brand $brand)
+    
+     {
+         echo view ('admin/brands/delete', compact('brand'));
+     }
+     
     public function destroy(Brand $brand)
     {
-        //
+        $brand->delete();
+        return to_route('brands.index')->with('status', 'Marca eliminada');
     }
 }

@@ -7,6 +7,7 @@ use App\Models\Brand;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Products\StoreRequest;
+use App\Http\Requests\Products\UpdateRequest;
 
 use function Laravel\Prompts\alert;
 
@@ -18,7 +19,7 @@ class ProductController extends Controller
     public function index()
     {
         //$products = Product::get(); // Obtener todos los datos de la tabla
-        $products = Product::paginate(3);
+        $products = Product::paginate(4);
         return view ('admin/products/index', compact('products'));
     }
 
@@ -27,10 +28,13 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //$brands = Brand::get(); Para obtener todos los datos de un modelo o tabla
-        $brands = Brand::pluck('id', 'brand'); // Obtener datos específicos
-       // dd($brands); // Verificar que los datos se extraen
-        return view ('admin/products/create', compact('brands'));
+        //echo "Create Productos";
+        //$brands = Brand::get(); //Para obtener todos los datos de una tabla
+        $brands=Brand::pluck('id','brand');
+
+        
+        //dd($brands);//Verificar que los datos se esten extrallendo
+        return view('admin/products/create',compact('brands'));
     }
 
     /**
@@ -38,11 +42,20 @@ class ProductController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        //echo "Registro Realizado";
+       //echo "Store Productos";
         //dd($request);
-        //dd($request->all());
-        Product::create($request->all());
-        return to_route('products.index') -> with ('status', 'Producto Registrado');
+        //dd($request->all);
+        $data = $request->all();
+
+        if(isset($data["imagen"])){
+            //Cambiar el nombre del archivo a cargar
+            $data["imagen"] = $filename = time(). ".".$data["imagen"]->extension();
+            //Guardar imagen en la carpeta pùblica
+            $request->imagen->move(public_path("image/products"), $filename);
+        }
+
+        Product::create($data);
+        return to_route('products.index')->with('status', 'Producto Registrado');
     }
 
     /**
@@ -52,7 +65,7 @@ class ProductController extends Controller
     {
         return view('admin/products/show', compact('product'));
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      */
@@ -66,7 +79,7 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product)
+    public function update(UpdateRequest $request, Product $product)
     {
         $data = $request->all();
 
