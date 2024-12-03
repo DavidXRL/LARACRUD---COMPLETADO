@@ -23,13 +23,13 @@ class StoreRequest extends FormRequest
     {
         return [
             'street' => "required|min:5|max:50|",
-            'internal_num' => "required|integer|max:3|",
-            'external_num' => "required|integer|max:3|",
+            'internal_num' => "required|integer|",
+            'external_num' => "required|integer|",
             'neighborhood' => "required|min:5|max:50|",
             'town' => "required|min:5|max:50|",
             'state' => "required|min:5|max:50|",
             'country' => "required|min:5|max:50|",
-            'postal_code' => "required|integer|max:5|min:5|",
+            'postal_code' => "required|integer|",
 
         ];
     }

@@ -34,6 +34,7 @@
   }
 </style>
 </head>
+
 <body class="bg-light">
 
 <!-- Contenedor principal -->
@@ -48,7 +49,9 @@
               <div class="card-body card-body-welcome">
                   <h5 class="card-title">¡Gracias por gestionar la tienda!</h5>
                   <p class="card-text">
-                      En tu panel de administración puedes gestionar los productos, clientes, ventas y mucho más. Aquí podrás supervisar el rendimiento de la tienda y asegurarte de que todo esté funcionando correctamente.
+                      En tu panel de administración puedes gestionar los productos, clientes, ventas
+                       y mucho más. Aquí podrás supervisar el rendimiento de la tienda y asegurarte de
+                        que todo esté funcionando correctamente.
                   </p>
               </div>
           </div>

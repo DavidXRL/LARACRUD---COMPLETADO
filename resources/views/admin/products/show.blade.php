@@ -2,8 +2,9 @@
 
 @section('content')
 <div class="container mt-4">
+    <br>
     <h1 class="text-center mb-4">Detalles del Producto</h1>
-
+<br>
     <div class="card">
         <div class="card-body">
             <h3 class="card-title">Producto: {{$product->name_product}}</h3>

@@ -26,7 +26,7 @@
 
 <div class="container mt-5">
     <h3 class="text-center" style="background-color: #f8f4e6; padding: 10px; border-radius: 5px;">
-        ¿Estás seguro que quieres eliminar el producto <span style="color: #e6b17b;">{{$product->nameProduct}}</span>?
+        ¿Estás seguro que quieres eliminar el producto <span style="color: #e6b17b;">{{$product->name_product}}</span>?
     </h3>
 
     <div class="d-flex justify-content-center gap-3">

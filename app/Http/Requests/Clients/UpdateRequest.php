@@ -26,7 +26,7 @@ class UpdateRequest extends FormRequest
             'last_name' => 'required|min:3|max:20|',
             'second_last_name' => 'required|min:3|max:20|',
             'email' => 'required|min:10|max:50|',
-            'phone' => 'required|min:10|max:10|integer|'
+            'phone' => 'required|integer|'
         ];
     }
 }
